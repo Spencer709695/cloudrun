@@ -1,0 +1,13 @@
+steps:
+# Build the container image
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/gcb-demo-709/helloworld:latest', '.']
+# Push the container image to Container Registry
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/gcb-demo-709/helloworld:latest']
+# Deploy container image to Cloud Run
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args: ['run', 'deploy', 'my-app', '--image', 'gcr.io/gcb-demo-709/helloworld:latest', '--region', 'us-centra>
+images:
+- gcr.io/gcb-demo-709/helloworld:latest
