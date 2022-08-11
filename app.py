@@ -1,12 +1,17 @@
-from flask import Flask, request
+import os
+
+from flask import Flask
 
 app = Flask(__name__)
 
-@app.route("/", methods=["GET"])
-def homepage():
-    if request.method == "GET":
-        return jsonify({"message": "Hello World!"})
 
-PORT = int(os.environ.get("PORT", 8080))
-if __name__ == '__main__':
-    app.run(threaded=True,host='0.0.0.0',port=PORT)
+@app.route("/")
+def hello_world():
+    #name = os.environ.get("NAME", "World")
+    #return "Hello {}!".format(name)
+    # Put your logic here
+    return "Done", 200 #return nicely the response to the request
+
+
+if __name__ == "__main__":
+    app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
